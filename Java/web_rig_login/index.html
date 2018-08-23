@@ -36,7 +36,7 @@
     
     
       
-        <title>tomcat配置 - My Coding Life</title>
+        <title>Web 实现登录注册功能 - My Coding Life</title>
       
     
     
@@ -120,7 +120,7 @@
                 My Coding Life
               </span>
               <span class="md-header-nav__topic">
-                tomcat配置
+                Web 实现登录注册功能
               </span>
             
           
@@ -339,8 +339,8 @@
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
     
-    <a href="./" title="tomcat配置" class="md-nav__link md-nav__link--active">
-      tomcat配置
+    <a href="./" title="Web 实现登录注册功能" class="md-nav__link md-nav__link--active">
+      Web 实现登录注册功能
     </a>
     
   </li>
@@ -363,12 +363,12 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/qtw1998/qtw1998.github.io/edit/master/docs/Java/tomcat配置.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/qtw1998/qtw1998.github.io/edit/master/docs/Java/web_rig_login.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>tomcat配置</h1>
+                  <h1>Web 实现登录注册功能</h1>
                 
-                <details class="note"><summary>创建User</summary><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+                <details class="note"><summary>用户实体的创建---创建User</summary><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -465,7 +465,7 @@
 <span class="o">}</span>
 </pre></div>
 </td></tr></table>
-</details><details class="note"><summary>new InitServlet</summary><div class="superfences-tabs">
+</details><details class="example"><summary>初始化集合---new InitServlet</summary><div class="superfences-tabs">
 <input name="__tabs_1" type="radio" id="__tab_1_0" checked="checked" />
 <label for="__tab_1_0">web.xml Info</label>
 <div class="superfences-content"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -491,8 +491,48 @@
   <span class="nt">&lt;/servlet-mapping&gt;</span>
 </pre></div>
 </td></tr></table></div>
-<input name="__tabs_1" type="radio" id="__tab_1_1" />
-<label for="__tab_1_1">InitServlet.java</label>
+</div>
+</details><details class="tip"><summary>表单当中的文件上传---知识点</summary><div class="superfences-tabs">
+<input name="__tabs_2" type="radio" id="__tab_2_0" checked="checked" />
+<label for="__tab_2_0">admonition</label>
+<div class="superfences-content"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c">&lt;!-- </span>
+<span class="c">        文件上传的条件</span>
+<span class="hll"><span class="c">        * 表单必须是post提交方式(get有大小的限制)</span>
+</span><span class="hll"><span class="c">        * 表单中必须有文件上传项，文件上传项必须有name属性和值</span>
+</span><span class="c">            &lt;tr&gt;</span>
+<span class="c">                &lt;td class=&quot;td1&quot;&gt;上传头像&lt;/td&gt;</span>
+<span class="c">                &lt;td&gt;&lt;input type=&quot;file&quot; id=&quot;photo&quot; name=&quot;upload&quot;&gt;&lt;/td&gt;</span>
+<span class="c">            &lt;/tr&gt;</span>
+<span class="hll"><span class="c">        * 表单的enctype属性必须设置为multipart/form-data</span>
+</span><span class="c">            &lt;form action=&quot;/reg_login/RegistServlet&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;</span>
+<span class="c">     --&gt;</span>
+</pre></div>
+</td></tr></table></div>
+<input name="__tabs_2" type="radio" id="__tab_2_1" />
+<label for="__tab_2_1">extionsion</label>
+<div class="superfences-content"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    表单文件的上传需要用到的jar包
+    （/reg_login/WebContent/WEB-INF/lib/commons-fileupload-1.2.1.jar
+    /reg_login/WebContent/WEB-INF/lib/commons-io-1.4.jar）：
+     https://share.weiyun.com/5VAFwpj
+</pre></div>
+</td></tr></table></div>
+</div>
+</details><details class="example"><summary>RegistServlet</summary><div class="superfences-tabs">
+<input name="__tabs_3" type="radio" id="__tab_3_0" checked="checked" />
+<label for="__tab_3_0">InitVersion</label>
 <div class="superfences-content"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -517,28 +557,189 @@
 22
 23
 24
-25</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nn">com.imooc.servlet</span><span class="o">;</span>
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nn">com.imooc.servlet</span><span class="o">;</span>
 
-<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.servlet.ServletException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.servlet.annotation.WebServlet</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.servlet.http.HttpServlet</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.servlet.http.HttpServletRequest</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.servlet.http.HttpServletResponse</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.commons.fileupload.disk.DiskFileItemFactory</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.commons.fileupload.servlet.ServletFileUpload</span><span class="o">;</span>
+
+<span class="cm">/**</span>
+<span class="hll"><span class="cm"> * 用户注册的Servlet</span>
+</span><span class="cm"> */</span>
+<span class="nd">@WebServlet</span><span class="o">(</span><span class="s">&quot;/RegistServlet&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RegistServlet</span> <span class="kd">extends</span> <span class="n">HttpServlet</span> <span class="o">{</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doGet</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span>
+        <span class="c1">//数据的接收enctype接收方式要变化&quot;apache&quot;</span>
+<span class="hll">        <span class="c1">//文件上传的基本操作：</span>
+</span>        <span class="c1">//1.创建一个磁盘文件项工厂对象(fileupload组件当中的)</span>
+        <span class="n">DiskFileItemFactory</span> <span class="n">diskFileItemFactory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DiskFileItemFactory</span><span class="o">();</span>
+        <span class="c1">//2.创建一个核心解析类(解析从浏览器发送过来的请求)---和传统方式不一样（需要解析一下）</span>
+        <span class="n">ServletFileUpload</span> <span class="n">servletFileUpload</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ServletFileUpload</span><span class="o">(</span><span class="n">diskFileItemFactory</span><span class="o">);</span><span class="c1">//就是上面创建的磁盘文件项工厂对象</span>
+        <span class="c1">//3.解析request请求 从表单当中的标签name当中获取---&gt;fileitem对象（upload里封装的对象），返回的是list集合</span>
+        <span class="c1">//  List集合当中存放的是FileItem对象（每一个FileItem代表的就是页面当中的每一个表单项）</span>
+        <span class="c1">//  username password nickname sex ... 都是一个</span>
+        <span class="n">servletFileUpload</span><span class="o">.</span><span class="na">parseRequest</span><span class="o">(</span><span class="n">request</span><span class="o">);</span><span class="c1">//用这个核心类去解析request</span>
+        <span class="c1">//4.遍历集合，获得每个FileItem，判断是表单项还是文件上传项</span>
+
+    <span class="o">}</span>
+
+
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doPost</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span>
+        <span class="n">doGet</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<input name="__tabs_3" type="radio" id="__tab_3_1" />
+<label for="__tab_3_1">TryCatchVersion</label>
+<div class="superfences-content"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nn">com.imooc.servlet</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">javax.servlet.ServletException</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">javax.servlet.annotation.WebServlet</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">javax.servlet.http.HttpServlet</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.servlet.http.HttpServletRequest</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.servlet.http.HttpServletResponse</span><span class="o">;</span>
 
-<span class="kn">import</span> <span class="nn">com.imooc.domain.User</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.commons.fileupload.FileItem</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.commons.fileupload.FileUploadException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.commons.fileupload.disk.DiskFileItemFactory</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.commons.fileupload.servlet.ServletFileUpload</span><span class="o">;</span>
 
 <span class="cm">/**</span>
-<span class="cm"> * 用户注册的初始化的Servlet类</span>
-<span class="cm"> */</span>
-<span class="nd">@WebServlet</span><span class="o">(</span><span class="s">&quot;/InitServlet&quot;</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">InitServlet</span> <span class="kd">extends</span> <span class="n">HttpServlet</span> <span class="o">{</span>
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">ServletException</span> <span class="o">{</span>
-        <span class="c1">//创建一个List集合用于保存用户注册的信息</span>
-        <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;();</span>
-        <span class="c1">//将list保存到ServletContext作用域当中</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">getServletContext</span><span class="o">().</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">&quot;list&quot;</span><span class="o">,</span> <span class="n">list</span><span class="o">);</span>
+<span class="hll"><span class="cm"> * 用户注册的Servlet---存在文件上传，使用fileupload组件</span>
+</span><span class="cm"> */</span>
+<span class="nd">@WebServlet</span><span class="o">(</span><span class="s">&quot;/RegistServlet&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RegistServlet</span> <span class="kd">extends</span> <span class="n">HttpServlet</span> <span class="o">{</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doGet</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span>
+        <span class="c1">//数据的接收enctype接收方式要变化&quot;apache&quot;</span>
+<span class="hll">        <span class="c1">//文件上传的基本操作：</span>
+</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="c1">//1.创建一个磁盘文件项工厂对象(fileupload组件当中的)</span>
+            <span class="n">DiskFileItemFactory</span> <span class="n">diskFileItemFactory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DiskFileItemFactory</span><span class="o">();</span>
+<span class="hll">            <span class="c1">//2.创建一个核心解析类(解析从浏览器发送过来的请求)---和传统方式不一样（需要解析一下）</span>
+</span>            <span class="n">ServletFileUpload</span> <span class="n">servletFileUpload</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ServletFileUpload</span><span class="o">(</span><span class="n">diskFileItemFactory</span><span class="o">);</span><span class="c1">//就是上面创建的磁盘文件项工厂对象</span>
+            <span class="c1">//3.解析request请求 从表单当中的标签name当中获取---&gt;fileitem对象（upload里封装的对象），返回的是list集合</span>
+            <span class="c1">//  List集合当中存放的是FileItem对象（每一个FileItem代表的就是页面当中的每一个表单项）</span>
+            <span class="c1">//  username password nickname sex ... 都是一个</span>
+            <span class="n">List</span><span class="o">&lt;</span><span class="n">FileItem</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">servletFileUpload</span><span class="o">.</span><span class="na">parseRequest</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
+            <span class="c1">//4.遍历集合，获得每个FileItem---判断是表单项还是文件上传项</span>
+            <span class="k">for</span> <span class="o">(</span><span class="n">FileItem</span> <span class="n">fileItem</span> <span class="o">:</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+                <span class="c1">//判断是表单项还是文件上传项</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">fileItem</span><span class="o">.</span><span class="na">isFormField</span><span class="o">())</span> <span class="o">{</span>
+                    <span class="c1">//普通表单项</span>
+                    <span class="c1">//接收表单项的参数的值</span>
+                    <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">fileItem</span><span class="o">.</span><span class="na">getFieldName</span><span class="o">();</span><span class="c1">//获得表单项的name属性的值</span>
+<span class="c1">//                  &lt;tr&gt;</span>
+<span class="c1">//                      &lt;td class=&quot;td1&quot;&gt;用户名&lt;/td&gt;</span>
+<span class="c1">//                      &lt;td&gt;&lt;input type=&quot;text&quot; class=&quot;input1&quot; name=&quot;username&quot;&gt;&lt;/td&gt;</span>
+<span class="c1">//                  &lt;/tr&gt;</span>
+                    <span class="n">String</span> <span class="n">value</span> <span class="o">=</span> <span class="n">fileItem</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">&quot;UTF-8&quot;</span><span class="o">);</span><span class="c1">//获得表单项的值---解决中文乱码的问题</span>
+                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">name</span> <span class="o">+</span> <span class="s">&quot;   &quot;</span> <span class="o">+</span> <span class="n">value</span><span class="o">);</span>
+                <span class="o">}</span><span class="k">else</span> <span class="o">{</span>
+                    <span class="c1">//文件上传项</span>
+                    <span class="c1">//文件上传的功能</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">FileUploadException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// TODO Auto-generated catch block</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span><span class="c1">//用这个核心类去解析request</span>
+
+
+    <span class="o">}</span>
+
+
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doPost</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span>
+        <span class="n">doGet</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
     <span class="o">}</span>
 
 <span class="o">}</span>
