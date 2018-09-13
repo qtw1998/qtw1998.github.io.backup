@@ -213,8 +213,17 @@
 
       
         
+  
+  
+    <li class="md-tabs__item">
       
-        
+        <a href="../../DSandALGORITHM/Sorting/" title="DS & algorithm" class="md-tabs__link">
+          DS & algorithm
+        </a>
+      
+    </li>
+  
+
       
         
   
@@ -304,22 +313,34 @@
       
 
 
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      DS & algorithm
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        DS & algorithm
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
   <li class="md-nav__item">
-    <a href="../../Sorting/" title="Sorting" class="md-nav__link">
+    <a href="../../DSandALGORITHM/Sorting/" title="Sorting" class="md-nav__link">
       Sorting
     </a>
   </li>
 
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../../IDEA.md" title="IDEA" class="md-nav__link">
-      IDEA
-    </a>
+        
+      </ul>
+    </nav>
   </li>
 
     
@@ -330,13 +351,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
-    <label class="md-nav__link" for="nav-4">
+    <label class="md-nav__link" for="nav-3">
       Java
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
+      <label class="md-nav__title" for="nav-3">
         Java
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -368,13 +389,13 @@
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
     
-    <label class="md-nav__link" for="nav-5">
+    <label class="md-nav__link" for="nav-4">
       Linux
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-5">
+      <label class="md-nav__title" for="nav-4">
         Linux
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -427,6 +448,42 @@
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../AWK/" title="awk" class="md-nav__link">
+      awk
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../MATLAB/MATLAB/" title="MATLAB" class="md-nav__link">
+      MATLAB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../OS/" title="oPe" class="md-nav__link">
+      oPe
+    </a>
   </li>
 
         
@@ -517,7 +574,13 @@
 33
 34
 35
-36</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    head a.txt -n 8 ##表示显示a.txt文件的前8行
+36
+37
+38
+39
+40
+41
+42</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    head a.txt -n 8 ##表示显示a.txt文件的前8行
     tail a.txt -n 8 ##表示显示a.txt文件的后8行
     --------------wc 统计------------------
     wc a.txt 
@@ -525,7 +588,13 @@
     wc -w(word) -l(line) -c(字符数) a.txt  ##单纯显示单词数
     5 a.txt
    ----------------对文件的操作------------------------ 
-    rm filename.txt ##remove the file
+    rm -rf filename.txt ##remove the file
+    -f：强制删除，忽略不存在的文件，从不给出提示。
+    -i：交互模式删除文件，删除文件前给出提示。
+    -r：递归的删除目录下面文件以及子目录下文件。
+    -R：递归的删除目录下面文件以及子目录下文件。
+    -v：显示运行时详细信息
+
     mkdir file
     mv file1.txt file2.txt ##change the filename
     mv file1.txt CTutorial/ ##move to another filefolder
@@ -676,7 +745,163 @@ chmod 的二进制表示
     <span class="k">done</span>
 </pre></div>
 </td></tr></table>
-</details>
+</details><div class="admonition info">
+<p class="admonition-title">字符串 string</p>
+<p>echo "123" == echo 123</p>
+<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nv">password</span><span class="o">=</span><span class="s2">&quot;12345678&quot;</span>
+
+<span class="nb">echo</span> <span class="s2">&quot;Please input password:&quot;</span>
+<span class="nb">read</span> userpassword
+
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$userpassword</span> -eq <span class="nv">$password</span> <span class="o">]</span> <span class="c1">#“=”也可</span>
+<span class="k">then</span>
+       <span class="nb">echo</span> <span class="s2">&quot;password is correct!&quot;</span>
+<span class="k">else</span>
+       <span class="nb">echo</span> <span class="s2">&quot;password is incorrect!!&quot;</span>
+<span class="k">fi</span>
+</pre></div>
+</td></tr></table>
+if [ -z $str1] #检测是否为空  -n (not zero)</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">inputStream &amp; outputStream</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">echo</span> <span class="s2">&quot;Please input a:&quot;</span>
+<span class="hll">        <span class="nb">read</span> a
+</span>
+        <span class="nb">echo</span> <span class="s2">&quot;Please input b:&quot;</span>
+<span class="hll">        <span class="nb">read</span> b
+</span>
+        <span class="nv">c</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$a</span> + <span class="nv">$b</span><span class="sb">`</span>
+
+        <span class="nb">echo</span> <span class="nv">$a</span> + <span class="nv">$b</span> <span class="o">=</span> <span class="nv">$c</span>
+</pre></div>
+</td></tr></table>
+
+</div>
+<details class="danger"><summary>Arry</summary><p>must be runned by terminal bash (not sh)</p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    <span class="nv">arr</span><span class="o">=(</span><span class="m">7</span> <span class="m">8</span> <span class="m">9</span> <span class="m">10</span><span class="o">)</span>
+    <span class="nb">echo</span> <span class="si">${</span><span class="nv">arr</span><span class="p">[1]</span><span class="si">}</span> <span class="c1">#8 </span>
+
+    <span class="c1">#打印所有的元素</span>
+    <span class="nv">arr</span><span class="o">=(</span><span class="m">7</span> <span class="m">8</span> <span class="m">9</span> <span class="m">10</span><span class="o">)</span>
+    <span class="k">for</span> i in <span class="si">${</span><span class="nv">arr</span><span class="p">[@]</span><span class="si">}</span>
+    <span class="k">do</span>
+        <span class="nv">sum</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$sum</span> + <span class="nv">$i</span><span class="sb">`</span>
+    <span class="k">done</span>
+
+    <span class="nb">echo</span> <span class="nv">$sum</span>
+
+
+     <span class="nv">arr</span><span class="o">=(</span><span class="m">7</span> <span class="m">8</span> <span class="m">9</span> <span class="m">10</span><span class="o">)</span>
+<span class="c1">#选出最大元素</span>
+<span class="nv">max</span><span class="o">=</span><span class="si">${</span><span class="nv">arr</span><span class="p">[0]</span><span class="si">}</span>
+<span class="k">for</span> i in <span class="si">${</span><span class="nv">arr</span><span class="p">[@]</span><span class="si">}</span>
+<span class="k">do</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nv">$i</span> -gt <span class="nv">$max</span> <span class="o">]</span>
+   <span class="k">then</span>
+      <span class="nv">max</span><span class="o">=</span><span class="nv">$i</span>
+   <span class="k">fi</span>
+<span class="k">done</span>
+
+<span class="nb">echo</span> <span class="nv">$max</span>
+</pre></div>
+</td></tr></table>
+</details><h1 id="linux">Linux全局变量·命令工具集<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h1>
+<p>##global varies</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">echo</span> <span class="nv">$USER</span> 
+    HOME 代表用户主目录
+    <span class="nb">cd</span> ~  --&gt;  <span class="nb">cd</span> <span class="nv">$HOME</span>
+
+    <span class="c1">#环境变量的设置(意义在于--&gt;加入到环境变量当中的文件在任意的路径下都可以运行)：[LINUX当中用冒号来隔开]</span>
+        parallels@parallels-vm:~$ <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/filefoldername
+
+    <span class="c1">#ZIP压缩</span>
+    zip zipfilename.zip *
+    zip workspace.zip -r workspace/* <span class="c1">#所有的文件都按照原来的文件结构压缩</span>
+    !<span class="o">[](</span>http://pdqq4cby3.bkt.clouddn.com/15364756086386.jpg<span class="o">)</span>
+
+
+    tar -zcvf CTut.tar.gz directory/
+    <span class="c1">#-z use gzip program </span>
+    <span class="c1">#-c create archive </span>
+    <span class="c1">#-v display progress while creating archive</span>
+    <span class="c1">#-f archieve file name</span>
+
+
+    直接双击就可以解压或者unzip zipfilename.zip
+    tar -zxvf filename.tar.gz
+
+
+    <span class="c1">#文件下载</span>
+    wget URL <span class="o">[</span>-O filename.tar.gz<span class="o">]</span>
+</pre></div>
+</td></tr></table>
                 
                   
                 
@@ -711,6 +936,20 @@ chmod 的二进制表示
             </div>
           </a>
         
+        
+          <a href="../AWK/" title="awk" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                awk
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>
