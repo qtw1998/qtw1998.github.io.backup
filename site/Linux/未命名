@@ -1,0 +1,10 @@
+# MIPS
+add a,b,c # a gets b + c     reg mem imm(immediate 立即数)
+
+c 
+f = (g + h) +(i + j)
+
+add t0,g,h
+add t1,i,j
+sub f,t0,t1
+

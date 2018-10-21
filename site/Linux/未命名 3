@@ -1,0 +1,20 @@
+##algorithm_hw2
+####516030910286 乔田伟
+
+
+```
+思路一 ：最容易想到的是O（n2）的算法，大致伪码即：
+1 findX(A, x){
+2     for i=0 to length[A] {
+3         key = A[i]
+4             for j=0 to length[A]{
+5                  if(j != i && key + A[j] == x ){return true}
+6     }
+7     return false
+8 }
+
+
+```
+
+
+

@@ -1,0 +1,122 @@
+# DS_HW1_516030910286_乔田伟
+    **[Related to PrimeNumber Problems]**
+
+-------
+**my codes**
+
+
+```c++
+  #include <iostream>
+    using namespace std;
+    /*
+     * if [primecount] is gt 2 (prime number is out of self and single one),we think the number is a prime number
+     */
+    bool isPrimeNum(int n) {
+        int primecount = 0;
+        for(int i = 1;i < n;i++) {
+            if((n % i) == 0)
+                primecount++;
+        }
+        if(primecount <= 2)
+            return true;
+        else
+            return false;
+    }
+    int main() {
+        cout<<isPrimeNum(2)<<endl;
+        return 0;
+    }
+```
+
+
+-------
+**standard codes **
+
+```c++
+    bool IsPrime(int n) {
+    int divsor = 0;
+    for (int i = 0; i < n; ++i) {
+        if (n % i == 0)
+            divsor++;
+        return(divsor == 2);//admoni
+    }
+} 
+
+```
+
+```
+优化的思路和方法：
+    I.只要出现了一个因子（大于1，小于n），即退出判断（return flase）；
+    II.只需要检查2和奇数；
+    III.检查的范围是2 ~ sqrt(n)；
+        所以复杂度可以认为是O(SQRT(n));
+```
+    
+
+```c++
+#include <iostream>
+using namespace std;
+
+bool isPrime(int n) {
+	if(n <= 1)	return false;
+	if(n == 2)	return true;
+	if(n % 2 == 0)	return false;
+	int range = sqrt(n) + 1;
+	for (int i = 3; i < range; ++i)
+	{
+		if (n % i == 0)	return false;
+	}
+	return true;
+}
+```
+
+---
+ 
+
+```
+**[count S = 1 - 2 + 3 -4 + 5 - ....+ / -N]**
+```
+
+
+ 
+```
+int sum(int n){
+	if((n % 2) == 0)
+		return -n / 2;
+	else
+		return -n / 2 + n;
+}
+```
+
+## 拓展题
+
+```c++
+/*
+ *分析带有函数调用方法的算法复杂度的函数分析
+ *最大公因子问题(GCD问题)---greatest common divisor
+ */
+//蛮力算法
+int GCD(int x,int y) {
+	int g = x;
+	while(x % g != 0 || y % g != 0)
+		g--;
+	return g;
+}
+
+//Euclid 算法
+int GCD(int x,int y) {
+	int r;
+	while(true) {
+		r = x % y;
+		if(r == 0)
+			break;
+		x = y;
+		y = r;
+	}
+	return y;
+}
+
+
+```
+
+
