@@ -455,7 +455,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../LAB1/" title="vivado" class="md-nav__link">
+    <a href="../LAB1.md" title="vivado" class="md-nav__link">
       vivado
     </a>
   </li>
@@ -506,13 +506,6 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#name-number" title="NAME &amp; NUMBER:" class="md-nav__link">
-    NAME &amp; NUMBER:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#experiment-requirement" title="experiment requirement" class="md-nav__link">
     experiment requirement
   </a>
@@ -544,6 +537,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../LAB3/" title="vivado" class="md-nav__link">
+      vivado
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -568,13 +573,6 @@
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#name-number" title="NAME &amp; NUMBER:" class="md-nav__link">
-    NAME &amp; NUMBER:
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#experiment-requirement" title="experiment requirement" class="md-nav__link">
@@ -618,18 +616,10 @@
                 
                 <h1 id="lab2_report">LAB2_REPORT<a class="headerlink" href="#lab2_report" title="Permanent link">&para;</a></h1>
 <hr />
-<h4 id="name-number">NAME &amp; NUMBER:<a class="headerlink" href="#name-number" title="Permanent link">&para;</a></h4>
-<blockquote>
-<p>516030910286 乔田伟</p>
-</blockquote>
 <hr />
 <h3 id="experiment-requirement">experiment requirement<a class="headerlink" href="#experiment-requirement" title="Permanent link">&para;</a></h3>
 <div class="admonition note">
-<ol>
-<li>Implement a three-layer neural network to complete the recognition of handwritten numbers</li>
-<li>Write the function: int dnn(...)</li>
-<li>Classification accuracy is at least 90%, timing requirement is &lt;8ns, resource requirement: DSP &lt;= 100, other resources are smaller than on-chip resources (xc7z010clg400-1 8ns), throughput requirement: interval &lt;250.</li>
-</ol>
+<p>Learn how to perform ac and pz simulations on your circuit. Master the method of obtaining the zero and pole of a circuit from Bode plot and pz analysis. Analyze the difference between experimental data and calculated data. Strengthen the mastery of knowledge related to poles and poles.</p>
 </div>
 <hr />
 <h3 id="the-implementation-and-optimization-steps">the implementation and optimization steps<a class="headerlink" href="#the-implementation-and-optimization-steps" title="Permanent link">&para;</a></h3>
@@ -647,11 +637,11 @@
 <img alt="" src="http://pdqq4cby3.bkt.clouddn.com/15417776364499.jpg" /></li>
 <li>Further synthesis, the interval was found to be 33,142.
 <img alt="" src="http://pdqq4cby3.bkt.clouddn.com/15417776644314.jpg" /></li>
-<li>Add the data stream as an instruction in the dnn function, because the data stream can make the loop concurrently reduce the delay; add a pipe to each outermost loop to reduce the delay of the loop; use partition expansion for w1 and w2, increase The port of the array enables multiple data to be read at the same time to facilitate the pipeline (in this case, to save resources, only two matrices of input_image and w1 are expanded); modify the matrix multiplication part in the code, and the outer layer and inner layer Interchange, this is to reduce the size of the inner loop, so that the length of the inner loop in the pipeline is shorter, reduce the delay; modify the reLu part, use a new array hidden1 to store data, because dataflow only Can modify a number of plays, this can make dataflow smooth.
+<li>Modify the code: First, I switched the inner loop with the outer loop so that when the inner loop was forced to be unrolled during pipelining, the interval could be smaller as the interval is closely related to the length of the unrolled loop; second, I broke some original loops into separate loops so that the operations were performed only in the inner loop, which made my loops perfect or semi-perfect as stated in 01_Class_Intro_hls-2018-full.pdf.
 <img alt="" src="http://pdqq4cby3.bkt.clouddn.com/15417777496207.jpg" /></li>
-<li>After this, the synthesis was carried out and the interval was found to be 3177.
+<li>Add directives: 1. I added dataflow to function dnn, which allows loops to operate concurrently. 2. I tried to use array partition to allow multiple data to be read from a certain array simultaneously so that the pipeline could be more effective. 3. I tried to add resource directive to the arrays to make use of ROM_2P_BRAM, which did not have any effect. 4. Add pipeline directive to all the loops.
 <img alt="" src="http://pdqq4cby3.bkt.clouddn.com/15417777839404.jpg" /></li>
-<li>Add partition to w2. At this time, it is found that the dimension in the partition added by w1 is not modified correctly, so reset it and set the dimensions of w1 and w2 to 2.</li>
+<li>After 8 and 9, the Interval was finally decreased to 276, but the latency and interval was quite close to each other, which means the dataflow actually did not work, and the simulation is not correct (when applying C/RTL-Cosimulation, the latency and interval were about 350).</li>
 <li>Synthesize again, resulting in an incubation period of 335.</li>
 <li>Add partitions to the hidden and output arrays. The time obtained is 237, which is less than 250. However, the wait and the interval are not much different, which means that the data flow does not work and the simulation result is incorrect.</li>
 <li>Remove the data stream. Since the resources are sufficient, all the arrays are directly partitioned, which makes the pipeline more convenient. Modify the instruction to retain the loop of the loop in which the two matrices are multiplied, and the rest of the loop is expanded, because the other loops are relatively small, which can further increase the throughput rate.</li>
@@ -661,12 +651,12 @@
 <hr />
 <h3 id="resource-analysis">Resource analysis<a class="headerlink" href="#resource-analysis" title="Permanent link">&para;</a></h3>
 <div class="admonition success">
-<p>In the last solution, 74 is because the first two-layer loop is split into two, which is 32+32+10. As seen in the analysis perspective, 1 and 5 are respectively two The Initiation Interval and Iteration Latency of the outer loop, which is the extra added latency in the pipeline. Exchange the inner and outer layers of the loop, modify each loop into a perfect loop to expand the loop, try to split the score group, and add a pipeline to all loops to get the final result.</p>
+<p>Since I broke the loop where input_image was multiplied with w1, the total dsp usage was 74=32+32+10, which indicates the number of multipliers used.</p>
 <hr />
 </div>
 <div class="admonition hint">
 <p class="admonition-title">experimental summary</p>
-<p>In this lab, the project was optimized with the apfixed library, dataflow, array partition, pipeline, and unroll, and the Interval was successfully reduced to less than 250 if the resources did not exceed the on-board resources. During the experiment, dataflow was not realized but was implemented by hls as a simulation. This shows that the simulation function of hls is flawed, and the actual situation after simulation and implementation is different.</p>
+<p>The project’s interval was reduced to 276 after rewriting the code and applying dataflow, array partition and pipeline directive to it. The result shows that sometimes the hls may make errors, so we should not just rely on the result of the simulation when designing.</p>
 </div>
                 
                   
@@ -702,6 +692,20 @@
             </div>
           </a>
         
+        
+          <a href="../LAB3/" title="vivado" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                vivado
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>
